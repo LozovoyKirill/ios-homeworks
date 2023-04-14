@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
         let postButton = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(didTapPost))
         navigationItem.rightBarButtonItem = postButton
     }
+    
     @objc private func didTapPost() {
         let post = Post(title: "New post")
         let postVC = PostViewController(nibName: nil, bundle: nil)
