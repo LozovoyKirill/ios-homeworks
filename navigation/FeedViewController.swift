@@ -2,11 +2,10 @@
 //  FeedViewController.swift
 //  navigation
 //
-//  Created by Кирилл Левинсон on 12.04.2023.
+//  Created by Кирилл Левинсон on 17.04.2023.
 //
 
 import UIKit
-
 
 class FeedViewController: UIViewController {
     override func viewDidLoad() {
