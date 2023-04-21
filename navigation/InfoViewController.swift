@@ -25,6 +25,7 @@ class InfoViewController: UIViewController {
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
+    
     @objc private func didTapShowAlert() {
         let alertController = UIAlertController(title: "Alert", message: "This is an alert message", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
