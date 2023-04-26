@@ -25,7 +25,6 @@ class ProfileViewController: UIViewController {
     }
     
     func constraints(){
-        
         NSLayoutConstraint.activate([
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
