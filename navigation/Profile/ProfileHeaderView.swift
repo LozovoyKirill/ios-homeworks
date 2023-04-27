@@ -85,7 +85,7 @@ class ProfileHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-       
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         titleStatus.translatesAutoresizingMaskIntoConstraints = false
@@ -122,6 +122,7 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonPressed() {
+        titleStatus.text = statusText
         if titleStatus.text  == "" {
             titleStatus.text = "Enter the status..."
         }
@@ -133,3 +134,4 @@ class ProfileHeaderView: UIView {
         }
     }
 }
+
