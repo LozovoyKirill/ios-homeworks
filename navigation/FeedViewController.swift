@@ -17,7 +17,7 @@ class FeedViewController: UIViewController {
     }
     
     @objc private func didTapPost() {
-        let post = Post(title: "New post")
+        _ = Post(title: "New post")
         let postVC = PostViewController(nibName: nil, bundle: nil)
         navigationController?.pushViewController(postVC, animated: true)
     }
