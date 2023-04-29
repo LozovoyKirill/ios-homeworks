@@ -64,7 +64,7 @@ class ProfileHeaderView: UIView {
         textField.layer.cornerRadius = 12
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
-        textField.placeholder = ""
+        textField.placeholder = "Enter your status..."
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(nil, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
@@ -73,6 +73,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupAnyViews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -88,8 +89,7 @@ class ProfileHeaderView: UIView {
         addSubview(statusTextField)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             
             avatarImageView.widthAnchor.constraint(
@@ -107,20 +107,25 @@ class ProfileHeaderView: UIView {
                 equalToConstant: 100),
             fullNameLabel.topAnchor.constraint(
                 equalTo: topAnchor ,
-                constant: 0),
+                constant: 16),
             fullNameLabel.leadingAnchor.constraint(
                 equalTo: avatarImageView.trailingAnchor,
                 constant: 20),
             fullNameLabel.trailingAnchor.constraint(
                 equalTo: trailingAnchor,
                 constant: -27),
+            fullNameLabel.heightAnchor.constraint(
+                equalToConstant: 16),
             
             statusLabel.topAnchor.constraint(
                 equalTo: fullNameLabel.bottomAnchor,
-                constant: 10),
+                constant: 5),
             statusLabel.leadingAnchor.constraint(
-                equalTo: fullNameLabel.leadingAnchor),
-            statusLabel.widthAnchor.constraint(equalToConstant: 150),
+                equalTo: avatarImageView.trailingAnchor,
+                constant: 20),
+            statusLabel.widthAnchor.constraint(equalToConstant: 160),
+            statusLabel.heightAnchor.constraint(equalToConstant: 50),
+            
             
             statusTextField.widthAnchor.constraint(
                 equalToConstant: 200),
@@ -128,9 +133,10 @@ class ProfileHeaderView: UIView {
                 equalToConstant: 40),
             statusTextField.topAnchor.constraint(
                 equalTo: statusLabel.bottomAnchor,
-                constant: 15),
+                constant: 0),
             statusTextField.leadingAnchor.constraint(
-                equalTo: fullNameLabel.leadingAnchor),
+                equalTo: avatarImageView.trailingAnchor,
+                constant: 20),
             statusTextField.trailingAnchor.constraint(
                 equalTo: fullNameLabel.trailingAnchor, constant: -16),
             
@@ -138,9 +144,7 @@ class ProfileHeaderView: UIView {
                 equalToConstant: 50),
             setStatusButton.topAnchor.constraint(
                 equalTo: statusTextField.bottomAnchor,
-                constant: 50),
-            setStatusButton.bottomAnchor.constraint(
-                equalTo: bottomAnchor),
+                constant: 15),
             setStatusButton.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16),
