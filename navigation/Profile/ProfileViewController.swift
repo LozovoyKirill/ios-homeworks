@@ -31,29 +31,26 @@ class ProfileViewController: UIViewController {
         
         addSubviews()
         setupConstraits()
-        
-        func addSubviews() {
-            view.addSubview(profileHeaderView)
-            view.addSubview(newPostButton)
-        }
-        
-        func setupConstraits() {
-            let safeAreaGuide = view.safeAreaLayoutGuide
-            NSLayoutConstraint.activate([
-                profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-                profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
-                profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-                profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor,constant: 0),
-                profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-                
-                newPostButton.heightAnchor.constraint(equalToConstant: 50),
-                newPostButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
-                newPostButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0),
-                newPostButton.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor,constant: 0),
-            ])
-        }
-        
+    }
+    func addSubviews() {
+        view.addSubview(profileHeaderView)
+        view.addSubview(newPostButton)
+    }
+    
+    func setupConstraits() {
+        let safeAreaGuide = view.safeAreaLayoutGuide
+        NSLayoutConstraint.activate([
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
+            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor,constant: 0),
+            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
+            
+            newPostButton.heightAnchor.constraint(equalToConstant: 50),
+            newPostButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
+            newPostButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0),
+            newPostButton.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor,constant: 0),
+        ])
     }
 }
-
