@@ -31,7 +31,7 @@ class ProfileHeaderView: UIView {
         return label
     }()
     
-    private let setStatusButton: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         let setStatusButton = UIButton(type: .system)
         setStatusButton.setTitle("Show status", for: .normal)
         setStatusButton.setTitleColor(.white, for: .normal)
@@ -42,7 +42,7 @@ class ProfileHeaderView: UIView {
         setStatusButton.layer.shadowRadius = 4
         setStatusButton.layer.shadowColor = UIColor.black.cgColor
         setStatusButton.translatesAutoresizingMaskIntoConstraints = false
-        setStatusButton.addTarget(nil, action: #selector(buttonPressed), for: .touchUpInside)
+        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return setStatusButton
     }()
     //titleStatus
@@ -56,7 +56,7 @@ class ProfileHeaderView: UIView {
         return statusLabel
     }()
     //textField
-    let statusTextField: UITextField = {
+  private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
@@ -66,7 +66,7 @@ class ProfileHeaderView: UIView {
         textField.layer.borderWidth = 1.0
         textField.placeholder = "Enter your status..."
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.addTarget(nil, action: #selector(statusTextChanged(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -145,6 +145,7 @@ class ProfileHeaderView: UIView {
             setStatusButton.topAnchor.constraint(
                 equalTo: statusTextField.bottomAnchor,
                 constant: 15),
+
             setStatusButton.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16),
