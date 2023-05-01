@@ -78,7 +78,6 @@ class ProfileHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupAnyViews()
     }
     
     func setupAnyViews(){
