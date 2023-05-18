@@ -14,7 +14,7 @@ class LogInViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
-        scrollView.showsHorizontalScrollIndicator = true
+        scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         return scrollView
@@ -41,6 +41,7 @@ class LogInViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Email or phone number"
         textField.textColor = .black
+        textField.autocapitalizationType = .none
         textField.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         textField.leftViewMode = .always//отступ
@@ -60,6 +61,7 @@ class LogInViewController: UIViewController {
         textField.placeholder = "Password"
         textField.textColor = .black
         textField.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        textField.autocapitalizationType = .none
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         textField.leftViewMode = .always
         textField.tintColor = colorSet
@@ -69,6 +71,7 @@ class LogInViewController: UIViewController {
         textField.returnKeyType = UIReturnKeyType.done
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
         textField.delegate = self
+        
         
         return textField
     }()
@@ -124,8 +127,8 @@ class LogInViewController: UIViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         view.addSubview(logoImageView)
-        view.addSubview(textFieldStackView)
-        view.addSubview(logButton)
+        contentView.addSubview(textFieldStackView)
+        contentView.addSubview(logButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +143,7 @@ class LogInViewController: UIViewController {
     
     @objc func willShowKeyboard(_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
-        scrollView.contentInset.bottom += keyboardHeight ?? 0.0
+        scrollView.contentInset.bottom = keyboardHeight ?? 0.0
     }
     
     
