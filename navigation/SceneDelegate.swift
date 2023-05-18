@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let feedNavigationController = UINavigationController(rootViewController: FeedViewController())
         feedNavigationController.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house"), tag: 0)
-        let logInViewController = LogInViewController()//создаем LogInViewController
+        let logInViewController = UINavigationController(rootViewController: LogInViewController())//создаем LogInViewController
         logInViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 1)
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [feedNavigationController, logInViewController]
@@ -25,8 +25,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = tabBarController
         self.window = window
         window.makeKeyAndVisible()
-    }
-
+ }
+//    func createFirstController() -> UINavigationController {
+//        let navigationVC = UINavigationController(rootViewController: FeedViewController())
+//        navigationVC.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "house"), tag: 0)
+//
+//        return navigationVC
+//    }
+//
+//    func createSecondController() -> UINavigationController {
+//        let navigationVC = UINavigationController(rootViewController: LogInViewController())
+//        navigationVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.fill"), tag: 1)
+//
+//        return navigationVC
+//    }
+//
+//    func createTabBar() -> UITabBarController {
+//        let tabBar = UITabBarController ()
+//        tabBar.viewControllers = [createFirstController(), createSecondController()]
+//
+//        return tabBar
+//    }
+//
+//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+//        let window = UIWindow(windowScene: windowScene)
+//        window.rootViewController = createTabBar()
+//        window.makeKeyAndVisible()
+//        self.window = window
+//    }
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
