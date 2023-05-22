@@ -83,6 +83,7 @@ class ProfileHeaderView: UIView {
     }
     
     func setupAnyViews(){
+        
         addSubview(avatarImageView)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
