@@ -9,13 +9,13 @@ import UIKit
 
 
 class PostViewController: UIViewController {
-    var post: Post?
+    var post: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.green
         infoButton()
-        navigationItem.title = post?.title
+        //navigationItem.title = post?.title
     }
     private func infoButton(){
         let infoButton = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(didTapInfo))
