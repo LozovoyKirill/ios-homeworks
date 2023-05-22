@@ -56,7 +56,7 @@ class ProfileHeaderView: UIView {
         return statusLabel
     }()
     //textField
-  private lazy var statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 12
@@ -64,6 +64,8 @@ class ProfileHeaderView: UIView {
         textField.layer.cornerRadius = 12
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1.0
+        textField.leftViewMode = .always//отступ
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         textField.placeholder = "Enter your status..."
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
@@ -144,7 +146,7 @@ class ProfileHeaderView: UIView {
             setStatusButton.topAnchor.constraint(
                 equalTo: statusTextField.bottomAnchor,
                 constant: 15),
-
+            
             setStatusButton.leadingAnchor.constraint(
                 equalTo: leadingAnchor,
                 constant: 16),
@@ -152,18 +154,17 @@ class ProfileHeaderView: UIView {
                 equalTo: fullNameLabel.trailingAnchor),
         ])
     }
-
+    
     @objc func buttonPressed() {
         statusLabel.text = statusText
         if statusLabel.text  == "" {
             statusLabel.text = "Enter the status..."
         }
     }
-
+    
     @objc func statusTextChanged(_ textField: UITextField) {
         if let titleStatus = textField.text {
             statusText = titleStatus
         }
     }
 }
-
