@@ -8,7 +8,7 @@
 import UIKit
 
 
-struct Post {
+struct NewPost {
     let title: String
 }
 
