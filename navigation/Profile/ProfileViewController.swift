@@ -9,48 +9,67 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private let profileHeaderView = {
-        let view = ProfileHeaderView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let myPost = Post.make()
     
-    private let newPostButton: UIButton = {
-        let button = UIButton (type: .system)
-        button.setTitle("Open post", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
-        navigationItem.title = "Profile"
-        
+        view.backgroundColor = .systemGray6
         addSubviews()
-        setupConstraits()
-    }
-    func addSubviews() {
-        view.addSubview(profileHeaderView)
-        view.addSubview(newPostButton)
+        setupConstraints()
     }
     
-    func setupConstraits() {
-        let safeAreaGuide = view.safeAreaLayoutGuide
+    private func addSubviews() {
+        view.addSubview(tableView)
+    }
+    
+    private func setupConstraints() {
+        let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor),
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            profileHeaderView.topAnchor.constraint(equalTo: safeAreaGuide.topAnchor,constant: 0),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
-            newPostButton.heightAnchor.constraint(equalToConstant: 50),
-            newPostButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 0),
-            newPostButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: 0),
-            newPostButton.bottomAnchor.constraint(equalTo: safeAreaGuide.bottomAnchor,constant: 0),
+            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
         ])
+    }
+}
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        myPost.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+        cell.setupCell(model: myPost[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let header = ProfileHeaderView()
+            return header
+        } else {
+            return nil
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 300
+        } else {
+            return 0
+        }
     }
 }
