@@ -73,53 +73,53 @@ class PhotosTableViewCell: UITableViewCell {
         }
     }
     private func setupContraints() {
-        
+
         let imageSize: CGFloat = contentView.frame.width / 4
-        
+//
         NSLayoutConstraint.activate([
-            
-            //             contentWhiteView
+//
+//            //             contentWhiteView
             contentWhiteView.topAnchor.constraint(equalTo: contentView.topAnchor),
             contentWhiteView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            contentWhiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+//            contentWhiteView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             contentWhiteView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
-            //            titleLable
+//
+//            //            titleLable
             titleLable.topAnchor.constraint(equalTo: contentWhiteView.topAnchor ,constant: 12),
             titleLable.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor,constant: 12),
-            
-            //            photoImage1
-            photoImage1.widthAnchor.constraint(equalToConstant: imageSize),
-            photoImage1.heightAnchor.constraint(equalToConstant: imageSize),
-            photoImage1.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
-            photoImage1.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor,constant: 12),
-            photoImage1.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
-
-            //            photoImage2
-            photoImage2.widthAnchor.constraint(equalToConstant: imageSize),
-            photoImage2.heightAnchor.constraint(equalToConstant: imageSize),
-            photoImage2.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
-            photoImage2.leadingAnchor.constraint(equalTo: photoImage1.trailingAnchor,constant: 8),
-            photoImage2.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
-            
-            //            photoImage3
-            photoImage3.widthAnchor.constraint(equalToConstant: imageSize),
-            photoImage3.heightAnchor.constraint(equalToConstant: imageSize),
-            photoImage3.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
-            photoImage3.leadingAnchor.constraint(equalTo: photoImage2.trailingAnchor,constant: 8),
-            photoImage3.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
-            
-            //            photoImage4
-            photoImage4.widthAnchor.constraint(equalToConstant: imageSize),
-            photoImage4.heightAnchor.constraint(equalToConstant: imageSize),
-            photoImage4.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
-            photoImage4.leadingAnchor.constraint(equalTo: photoImage3.trailingAnchor,constant: 8),
-            photoImage4.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
-            
-            //            arrowImage
-            arrowImage.widthAnchor.constraint(equalToConstant: 30),
-            arrowImage.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -12),
-            arrowImage.centerYAnchor.constraint(equalTo: titleLable.centerYAnchor)
+//
+//            //            photoImage1
+//            photoImage1.widthAnchor.constraint(equalToConstant: imageSize),
+//            photoImage1.heightAnchor.constraint(equalToConstant: imageSize),
+//            photoImage1.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
+//            photoImage1.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor,constant: 12),
+//            photoImage1.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
+//
+//            //            photoImage2
+//            photoImage2.widthAnchor.constraint(equalToConstant: imageSize),
+//            photoImage2.heightAnchor.constraint(equalToConstant: imageSize),
+//            photoImage2.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
+//            photoImage2.leadingAnchor.constraint(equalTo: photoImage1.trailingAnchor,constant: 8),
+//            photoImage2.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
+//
+//            //            photoImage3
+//            photoImage3.widthAnchor.constraint(equalToConstant: imageSize),
+//            photoImage3.heightAnchor.constraint(equalToConstant: imageSize),
+//            photoImage3.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
+//            photoImage3.leadingAnchor.constraint(equalTo: photoImage2.trailingAnchor,constant: 8),
+//            photoImage3.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
+//
+//            //            photoImage4
+//            photoImage4.widthAnchor.constraint(equalToConstant: imageSize),
+//            photoImage4.heightAnchor.constraint(equalToConstant: imageSize),
+//            photoImage4.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
+//            photoImage4.leadingAnchor.constraint(equalTo: photoImage3.trailingAnchor,constant: 8),
+//            photoImage4.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
+//
+//            //            arrowImage
+//            arrowImage.widthAnchor.constraint(equalToConstant: 30),
+//            arrowImage.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -12),
+//            arrowImage.centerYAnchor.constraint(equalTo: titleLable.centerYAnchor)
         ])
     }
 }
