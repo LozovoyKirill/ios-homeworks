@@ -62,7 +62,7 @@ final class CustomTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // очищение ячейки для переиспользования
     override func prepareForReuse() {
         super.prepareForReuse()
         authorLabel.text = nil
