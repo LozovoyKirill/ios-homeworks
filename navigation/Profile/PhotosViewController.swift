@@ -10,8 +10,8 @@ import UIKit
 class PhotosViewController: UIViewController {
     
     private let addImages = PhotoPost.makeArray()
-    
-    private lazy var photocollectionView: UICollectionView = {
+
+    private lazy var photoCollectionView: UICollectionView = {
         //создание стандартного лейаут
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -30,20 +30,20 @@ class PhotosViewController: UIViewController {
         setConstraits()
         navigationController?.navigationBar.isHidden = false
         title = "Photo Gallery"
-        photocollectionView.reloadData()
-    }
+        photoCollectionView.reloadData()
+       }
     
     
     private func addSubviews(){
-        view.addSubview(photocollectionView)
+        view.addSubview(photoCollectionView)
     }
     
     private func setConstraits() {
         NSLayoutConstraint.activate([
-            photocollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            photocollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            photocollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            photocollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            photoCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            photoCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            photoCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            photoCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }
@@ -59,7 +59,7 @@ extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
-        cell.setupCell(model: addImages[indexPath.item])
+        cell.setupCell(model: addImages[indexPath.row])
         return cell
     }
 }
