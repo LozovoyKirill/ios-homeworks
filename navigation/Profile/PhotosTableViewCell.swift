@@ -94,7 +94,7 @@ class PhotosTableViewCell: UITableViewCell {
             photoImage1.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: 12),
             photoImage1.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor,constant: 12),
             photoImage1.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -12),
-            
+
             //            photoImage2
             photoImage2.widthAnchor.constraint(equalToConstant: imageSize),
             photoImage2.heightAnchor.constraint(equalToConstant: imageSize),
