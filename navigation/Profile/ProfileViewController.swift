@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -27,10 +28,12 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemGray6
         addSubviews()
         setupConstraints()
+        //tableView.reloadData()
     }
     
     private func addSubviews() {
         view.addSubview(tableView)
+       
     }
     
     private func setupConstraints() {
@@ -45,31 +48,70 @@ class ProfileViewController: UIViewController {
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        myPost.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-        cell.setupCell(model: myPost[indexPath.row])
-        return cell
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard section == 1 else {return 1}
+        return  myPost.count
     }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 0  {
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            return cell
+            
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+            cell.setupCell(model: myPost[indexPath.row])
+            
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    //}
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let header = ProfileHeaderView()
-            return header
+            return ProfileHeaderView()
         } else {
             return nil
         }
     }
+    //  }
     
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 225
-        } else {
-            return 0
-        }
-    }
+    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //        myPost.count
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+    //        cell.setupCell(model: myPost[indexPath.row])
+    //        return cell
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    //        if section == 0 {
+    //            let header = ProfileHeaderView()
+    //            return header
+    //        } else {
+    //            return nil
+    //        }
+    //    }
+    //
+    //
+    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    //        if section == 0 {
+    //            return 225
+    //        } else {
+    //            return 0
+    //        }
+    //    }
+    //}
+    //
 }
