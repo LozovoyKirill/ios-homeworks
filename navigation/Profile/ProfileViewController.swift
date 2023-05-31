@@ -28,19 +28,7 @@ class ProfileViewController: UIViewController {
         view.backgroundColor = .systemGray6
         addSubviews()
         setupConstraints()
-        //tableView.reloadData()
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        setupView()
-//    }
-//
-//    private func setupView() {
-//        view.backgroundColor = UIColor.systemGray6
-//        navigationController?.navigationBar.isHidden = true
-//    }
     
     private func addSubviews() {
         view.addSubview(tableView)
@@ -68,7 +56,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return  myPost.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0  {
@@ -83,7 +70,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
- 
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ProfileHeaderView()
@@ -91,52 +78,25 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return nil
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 225
         } else {
             return 0
         }
-        
     }
-        // высота ячейки
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.section == 0 {
-                return 160
-            }
-            return tableView.rowHeight
+    // высота ячейки
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 160
+        }
+        return tableView.rowHeight
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let photosViewController = PhotosViewController()
+        if indexPath.section == 0 {
+            navigationController?.pushViewController(photosViewController, animated: true)
         }
     }
-    //  }
-    
-    
-    //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        myPost.count
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-    //        cell.setupCell(model: myPost[indexPath.row])
-    //        return cell
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    //        if section == 0 {
-    //            let header = ProfileHeaderView()
-    //            return header
-    //        } else {
-    //            return nil
-    //        }
-    //    }
-    //
-    //
-    //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    //        if section == 0 {
-    //            return 225
-    //        } else {
-    //            return 0
-    //        }
-    //    }
-    //}
-    //
-    //}
+}
