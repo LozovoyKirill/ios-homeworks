@@ -10,7 +10,7 @@ import UIKit
 class PhotosViewController: UIViewController {
     
     private let addImages = PhotoPost.makeArray()
-
+    
     private lazy var photoCollectionView: UICollectionView = {
         //создание стандартного лейаут
         let layout = UICollectionViewFlowLayout()
@@ -27,15 +27,18 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubviews()
+        setupView()
         setConstraits()
-        navigationController?.navigationBar.isHidden = false
-        title = "Photo Gallery"
-        photoCollectionView.reloadData()
-       }
-    
+    }
     
     private func addSubviews(){
         view.addSubview(photoCollectionView)
+    }
+    
+    private func setupView() {
+        navigationController?.navigationBar.isHidden = false
+        view.backgroundColor = .white
+        title = "Photo Gallery"
     }
     
     private func setConstraits() {
