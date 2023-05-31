@@ -8,12 +8,7 @@
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
-//    var photoImage1 = UIImageView()
-//    var photoImage2 = UIImageView()
-//    var photoImage3 = UIImageView()
-//    var photoImage4 = UIImageView()
 
-    
     private let arrowImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image =  UIImage(systemName: "arrow.right")
@@ -36,7 +31,6 @@ class PhotosTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
-        addFourImage()
         setupContraints()
     }
     
@@ -88,11 +82,6 @@ class PhotosTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    
-    private func addFourImage() {
-
-    }
-//
     private func addSubview(){
         [photoImage1, photoImage2, photoImage3, photoImage4, arrowImage, titleLable].forEach {
             contentView.addSubview($0)
@@ -103,10 +92,10 @@ class PhotosTableViewCell: UITableViewCell {
         let screenRect = UIScreen.main.bounds
         let screenWidth = screenRect.size.width
         let imageSize: CGFloat = (screenWidth - inset * 2 - 24) / 4
-
+        
         NSLayoutConstraint.activate([
             
-    //            titleLable
+            //            titleLable
             titleLable.topAnchor.constraint(equalTo: contentView.topAnchor ,constant: inset),
             titleLable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: inset),
             
@@ -115,30 +104,29 @@ class PhotosTableViewCell: UITableViewCell {
             photoImage1.heightAnchor.constraint(equalToConstant: imageSize),
             photoImage1.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: inset),
             photoImage1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: inset),
-
-         //            photoImage2
+            
+            //            photoImage2
             photoImage2.widthAnchor.constraint(equalToConstant: imageSize),
             photoImage2.heightAnchor.constraint(equalToConstant: imageSize),
             photoImage2.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: inset),
             photoImage2.leadingAnchor.constraint(equalTo: photoImage1.trailingAnchor,constant: 8),
-
-//            //            photoImage3
+            
+            //            //            photoImage3
             photoImage3.widthAnchor.constraint(equalToConstant: imageSize),
             photoImage3.heightAnchor.constraint(equalToConstant: imageSize),
             photoImage3.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: inset),
             photoImage3.leadingAnchor.constraint(equalTo: photoImage2.trailingAnchor,constant: 8),
-
-//            //            photoImage4
+            
+            //            //            photoImage4
             photoImage4.widthAnchor.constraint(equalToConstant: imageSize),
             photoImage4.heightAnchor.constraint(equalToConstant: imageSize),
             photoImage4.topAnchor.constraint(equalTo: titleLable.bottomAnchor,constant: inset),
             photoImage4.leadingAnchor.constraint(equalTo: photoImage3.trailingAnchor,constant: 8),
-
-//            //            arrowImage
+            
+            //            //            arrowImage
             arrowImage.widthAnchor.constraint(equalToConstant: 30),
             arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -inset),
             arrowImage.centerYAnchor.constraint(equalTo: titleLable.centerYAnchor)
         ])
     }
 }
-
