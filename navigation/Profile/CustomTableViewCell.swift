@@ -91,7 +91,7 @@ final class CustomTableViewCell: UITableViewCell {
         let screenWidth = screenRect.size.width
         
         NSLayoutConstraint.activate([
-
+           
             authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
