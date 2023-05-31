@@ -31,6 +31,17 @@ class ProfileViewController: UIViewController {
         //tableView.reloadData()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        setupView()
+//    }
+//
+//    private func setupView() {
+//        view.backgroundColor = UIColor.systemGray6
+//        navigationController?.navigationBar.isHidden = true
+//    }
+    
     private func addSubviews() {
         view.addSubview(tableView)
        
@@ -86,6 +97,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return 0
         }
+        
     }
         // высота ячейки
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
