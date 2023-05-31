@@ -51,7 +51,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard section == 1 else {return 1}
         return  myPost.count
@@ -72,14 +72,27 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    //}
-    
+ 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ProfileHeaderView()
         } else {
             return nil
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 225
+        } else {
+            return 0
+        }
+    }
+        // высота ячейки
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            if indexPath.section == 0 {
+                return 160
+            }
+            return tableView.rowHeight
         }
     }
     //  }
@@ -114,4 +127,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     //    }
     //}
     //
-}
+    //}
