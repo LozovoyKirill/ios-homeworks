@@ -90,10 +90,7 @@ class PhotosTableViewCell: UITableViewCell {
     
     
     private func addFourImage() {
-//        photoImage1 = addPhoto (nameImageView: "photoImage1", nameimage: "photo1" )
-//        photoImage2 = addPhoto (nameImageView: "photoImage2", nameimage: "photo2" )
-//        photoImage3 = addPhoto (nameImageView: "photoImage3", nameimage: "photo3" )
-//        photoImage4 = addPhoto (nameImageView: "photoImage4", nameimage: "photo4" )
+
     }
 //
     private func addSubview(){
@@ -145,17 +142,3 @@ class PhotosTableViewCell: UITableViewCell {
     }
 }
 
-//extension PhotosTableViewCell {
-//    func addPhoto(nameImageView: String, nameimage: String) -> UIImageView {
-//        let nameImageView: UIImageView = {
-//            let imageView = UIImageView()
-//            imageView.translatesAutoresizingMaskIntoConstraints = false
-//            imageView.layer.cornerRadius = 6
-//            imageView.image = UIImage(named: nameimage)
-//            imageView.clipsToBounds = true
-//            return imageView
-//        }()
-//        return nameImageView
-//    }
-//}
-//
