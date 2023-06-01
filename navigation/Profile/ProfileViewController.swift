@@ -70,7 +70,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
+ 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             return ProfileHeaderView()
@@ -86,13 +86,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
     }
-    // высота ячейки
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
-            return 160
+        // высота ячейки
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            if indexPath.section == 0 {
+                return 160
+            }
+            return tableView.rowHeight
         }
-        return tableView.rowHeight
-    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photosViewController = PhotosViewController()
         if indexPath.section == 0 {
@@ -100,3 +100,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
+
