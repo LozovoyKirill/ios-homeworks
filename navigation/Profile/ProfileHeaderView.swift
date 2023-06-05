@@ -20,8 +20,9 @@ class ProfileHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
-        
+        // обработка тап
+        let tapGesture = UITapGestureRecognizer(target: ProfileHeaderView.self, action: #selector (handleTap))
+        imageView.addGestureRecognizer(tapGesture)
         return imageView
     }()
     //nameLabel
@@ -76,6 +77,7 @@ class ProfileHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         setupAnyViews()
         setupConstraints()
     }
@@ -95,7 +97,7 @@ class ProfileHeaderView: UIView {
     
     func setupConstraints() {
         
-        let safeArea = safeAreaLayoutGuide
+        //let safeArea = safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
             
@@ -162,7 +164,10 @@ class ProfileHeaderView: UIView {
         ])
     }
     
-    
+    @objc  func handleTap() {
+        let profileViewController = ProfileViewController()
+        //profileViewController.openAvatarView()
+    }
     
     @objc func buttonPressed() {
         statusLabel.text = statusText
