@@ -23,10 +23,6 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    public func openTapAction() {
-        openAvatar()
-    }
-    
     private let screenWidth = UIScreen.main.bounds.width
     private let screenHeight = UIScreen.main.bounds.height
     
@@ -47,13 +43,13 @@ class ProfileViewController: UIViewController {
 //        view.backgroundColor = .blue
 //        return view
 //    }()
-    
+   
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .black
         view.layer.opacity = 0.5
-        view.isHidden = true//view.alpha = 0
+       
         
         return view
     }()
@@ -66,11 +62,13 @@ class ProfileViewController: UIViewController {
         imageView.isHidden = true
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openAvatar)))
-        
+        let tapGestureOpen = UITapGestureRecognizer(target: self, action: #selector(openAvatarView))
+        imageView.addGestureRecognizer(tapGestureOpen)
+       
         return imageView
     }()
     
+  
     private lazy var closeButton: UIButton = {
         let button = UIButton()
         let buttonSizeConfig = UIImage.SymbolConfiguration(pointSize: 26, weight: .medium, scale: .default)
@@ -79,8 +77,8 @@ class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(buttonImage, for: .normal)
         button.tintColor = UIColor.white
-        // button.alpha = 0.0
-        button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapClose)))
+        let tapGestureClose = UITapGestureRecognizer(target: self, action: #selector(tapClose))
+        button.addGestureRecognizer(tapGestureClose)
         
         return button
     }()
@@ -141,15 +139,16 @@ class ProfileViewController: UIViewController {
             
         ])
     }
-    
+    public func handleTap() {
+        openAvatarView()
+    }
 
-    @objc func openAvatar() {
-        
+    @objc func openAvatarView() {
+
     }
-    
-    @objc func tapClose() {UIView.animateKeyframes(withDuration: 0.6, delay: 0.0) {
-        
-    }
+ 
+    @objc func tapClose() {
+
     }
 }
     
