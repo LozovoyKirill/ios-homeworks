@@ -20,6 +20,8 @@ class ProfileHeaderView: UIView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAction)))
+        
         return imageView
     }()
     //nameLabel
@@ -92,7 +94,11 @@ class ProfileHeaderView: UIView {
     }
     
     func setupConstraints() {
+        
+        let safeArea = safeAreaLayoutGuide
+        
         NSLayoutConstraint.activate([
+            
             
             avatarImageView.widthAnchor.constraint(
                 equalToConstant: 100),
@@ -155,6 +161,8 @@ class ProfileHeaderView: UIView {
                 equalTo: fullNameLabel.trailingAnchor),
         ])
     }
+    
+    
     
     @objc func buttonPressed() {
         statusLabel.text = statusText
