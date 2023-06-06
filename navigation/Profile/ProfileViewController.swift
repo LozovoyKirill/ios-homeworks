@@ -23,66 +23,6 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    private let screenWidth = UIScreen.main.bounds.width
-    private let screenHeight = UIScreen.main.bounds.height
-    
-    
-    private var leadingAvatarView = NSLayoutConstraint()
-    
-    private var trailingAvatarView = NSLayoutConstraint()
-    
-    private var topAvatarView = NSLayoutConstraint()
-   
-    private var widthAvatarView = NSLayoutConstraint()
-    
-    private var heightAvatarView = NSLayoutConstraint()
-    
-//    private var avatarView: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .blue
-//        return view
-//    }()
-   
-    private lazy var backgroundView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
-        view.layer.opacity = 0.5
-       
-        
-        return view
-    }()
-    
-    private lazy var openedAvatarView: UIImageView = {
-        let imageView = UIImageView()
-        //imageView.backgroundColor = UIColor.black
-        imageView.image = UIImage(named: "Kot-hipster1")
-        imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = true
-        imageView.clipsToBounds = true
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        let tapGestureOpen = UITapGestureRecognizer(target: self, action: #selector(openAvatarView))
-        imageView.addGestureRecognizer(tapGestureOpen)
-       
-        return imageView
-    }()
-    
-  
-    private lazy var closeButton: UIButton = {
-        let button = UIButton()
-        let buttonSizeConfig = UIImage.SymbolConfiguration(pointSize: 26, weight: .medium, scale: .default)
-        let buttonImage = UIImage(systemName: "xmark.app", withConfiguration: buttonSizeConfig)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(buttonImage, for: .normal)
-        button.tintColor = UIColor.white
-        let tapGestureClose = UITapGestureRecognizer(target: self, action: #selector(tapClose))
-        button.addGestureRecognizer(tapGestureClose)
-        
-        return button
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -103,52 +43,17 @@ class ProfileViewController: UIViewController {
     }
     private func addSubviews() {
         view.addSubview(tableView)
-        view.addSubview(backgroundView)
-        view.addSubview(openedAvatarView)
-        view.addSubview(closeButton)
-        //
     }
     
     private func setupConstraints() {
         let safeArea = view.safeAreaLayoutGuide
-        //openedAvatarView
-        
-        leadingAvatarView = openedAvatarView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16)
-        widthAvatarView = openedAvatarView.widthAnchor.constraint(equalToConstant: 100)
-        heightAvatarView = openedAvatarView.heightAnchor.constraint(equalToConstant: 100)
-        topAvatarView = openedAvatarView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16)
-        NSLayoutConstraint.activate([leadingAvatarView, widthAvatarView, heightAvatarView, topAvatarView])
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            
-            //animation
-            
-            
-            backgroundView.topAnchor.constraint(equalTo: safeArea.topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
-            backgroundView.heightAnchor.constraint(equalToConstant: screenHeight),
-            
-            closeButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 20),
-            closeButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
-            //
-            
         ])
-    }
-    public func handleTap() {
-        openAvatarView()
-    }
-
-    @objc func openAvatarView() {
-
-    }
- 
-    @objc func tapClose() {
-
     }
 }
     
