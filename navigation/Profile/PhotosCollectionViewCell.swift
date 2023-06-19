@@ -38,14 +38,14 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         imagePostView.image = UIImage(named: model.photoImage)
     }
     
-        private func setConstraits() {
-    
-            NSLayoutConstraint.activate([
-                imagePostView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                imagePostView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                imagePostView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                imagePostView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-            ])
-        }
+    private func setConstraits() {
+        
+        NSLayoutConstraint.activate([
+            imagePostView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imagePostView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imagePostView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imagePostView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
+}
 
