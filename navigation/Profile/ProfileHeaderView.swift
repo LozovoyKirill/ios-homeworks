@@ -19,7 +19,6 @@ class ProfileHeaderView: UIView {
         imageView.image = UIImage(named: "Kot-hipster1")
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
@@ -27,7 +26,6 @@ class ProfileHeaderView: UIView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.isUserInteractionEnabled = true
-        
         return image
     }()
     
@@ -39,7 +37,6 @@ class ProfileHeaderView: UIView {
         button.tintColor = .black
         button.isHidden = true
         button.addTarget(self, action: #selector(backAnimation), for: .touchUpInside)
-        
         return button
     }()
     
@@ -48,7 +45,6 @@ class ProfileHeaderView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.text = "Hipster Cat"
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }()
     
@@ -56,15 +52,14 @@ class ProfileHeaderView: UIView {
         let setStatusButton = UIButton(type: .system)
         setStatusButton.setTitle("Show status", for: .normal)
         setStatusButton.setTitleColor(.white, for: .normal)
-        setStatusButton.backgroundColor = .blue
-        setStatusButton.layer.cornerRadius = 4
+        setStatusButton.backgroundColor = #colorLiteral(red: 0.2823529412, green: 0.5215686275, blue: 0.8, alpha: 1)
+        setStatusButton.layer.cornerRadius = 10
         setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
         setStatusButton.layer.shadowOpacity = 0.7
         setStatusButton.layer.shadowRadius = 4
         setStatusButton.layer.shadowColor = UIColor.black.cgColor
         setStatusButton.translatesAutoresizingMaskIntoConstraints = false
         setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        
         return setStatusButton
     }()
     
@@ -75,7 +70,6 @@ class ProfileHeaderView: UIView {
         statusLabel.textColor = .gray
         statusLabel.text = "Waiting for something..."
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         return statusLabel
     }()
     //textField
@@ -92,7 +86,8 @@ class ProfileHeaderView: UIView {
         textField.placeholder = "Enter your status..."
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
-        
+        //add
+        textField.addTarget(self, action: #selector(keyboardHide), for: .editingDidEndOnExit)
         return textField
     }()
     
@@ -165,7 +160,7 @@ class ProfileHeaderView: UIView {
             statusLabel.widthAnchor.constraint(equalToConstant: 160),
             statusLabel.heightAnchor.constraint(equalToConstant: 50),
             
-           statusTextField.heightAnchor.constraint(
+            statusTextField.heightAnchor.constraint(
                 equalToConstant: 40),
             statusTextField.topAnchor.constraint(
                 equalTo: statusLabel.bottomAnchor,
@@ -204,7 +199,6 @@ class ProfileHeaderView: UIView {
         self.heightBigAvatar.constant = UIScreen.main.bounds.height
         
         UIView.animate(withDuration: 0.5) {
-            
             self.topAvatarView.constant = (UIScreen.main.bounds.height - UIScreen.main.bounds.width) / 2
             self.leadingAvatarView.constant = 0
             self.heightAvatarView.constant = UIScreen.main.bounds.width
@@ -212,7 +206,6 @@ class ProfileHeaderView: UIView {
             self.avatarImageView.layer.cornerRadius = 0
             self.backgroundView.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.5)
             self.layoutIfNeeded()
-            
         } completion: { _ in
             UIView.animate(withDuration: 0.3) {
                 self.closeButton.isHidden = false
@@ -224,22 +217,18 @@ class ProfileHeaderView: UIView {
     @objc func backAnimation() {
         self.setStatusButton.isEnabled = true
         self.statusTextField.isEnabled = true
-        
         UIView.animate(withDuration: 0.3) {
             self.closeButton.alpha = 0
-            
         } completion: { _ in
             self.closeButton.isHidden = true
             
             UIView.animate(withDuration: 0.5) {
                 self.backgroundView.backgroundColor = UIColor.white.withAlphaComponent(0)
-                
                 self.widthAvatarView.constant = 100
                 self.heightAvatarView.constant = 100
                 self.leadingAvatarView.constant = 16
                 self.topAvatarView.constant = 16
                 self.avatarImageView.layer.cornerRadius = 50
-                
                 self.layoutIfNeeded()
             } completion: { _ in
                 self.widthBigAvatar.constant = 100
@@ -251,15 +240,32 @@ class ProfileHeaderView: UIView {
     }
     
     @objc func buttonPressed() {
-        statusLabel.text = statusText
-        if statusLabel.text  == "" {
-            statusLabel.text = "Enter the status..."
+        //add
+        if statusTextField.text?.isEmpty == true {
+            shakeTextField(to: statusTextField)
+        } else {
+            statusLabel.text = statusText
+            statusTextField.text = ""
+            endEditing(true)
         }
     }
     
+    private func shakeTextField(to textField: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y))
+        textField.layer.add(animation, forKey: "position")
+    }
+    
+    @objc func keyboardHide(){
+        endEditing(true)
+    }
+    
     @objc func statusTextChanged(_ textField: UITextField) {
-        if let titleStatus = textField.text {
-            statusText = titleStatus
-        }
+        statusText = textField.text ?? ""
     }
 }
+
