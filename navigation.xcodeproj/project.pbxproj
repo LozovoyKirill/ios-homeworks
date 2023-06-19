@@ -72,15 +72,33 @@
 				DC44E9BA2A1F6DCE00B1A509 /* PhotosCollectionViewCell.swift */,
 				DC44E9B82A1E5A5B00B1A509 /* PhotosViewController.swift */,
 				DC44E9B42A1E3F9500B1A509 /* PhotosTableViewCell.swift */,
-				DC6B94FD29E6EF5E00329EB7 /* SceneDelegate.swift */,
 				DC30985329F2933A00C69289 /* ProfileHeaderView.swift */,
 				DCA864FE2A01444A003D0068 /* LogInViewController.swift */,
-				DC44E9AE2A1B8C0900B1A509 /* Post.swift */,
 				DC44E9B02A1BA1EE00B1A509 /* CustomTableViewCell.swift */,
+				DC6B94FF29E6EF5E00329EB7 /* ViewController.swift */,
 				DC44E9B22A1BC2A800B1A509 /* UIView+Extension.swift */,
-				DC44E9B62A1E547B00B1A509 /* Photo.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		DC39444A2A38C31000D4EB6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC6B951329E6F2B500329EB7 /* PostViewController.swift */,
+				DC30984B29ED663400C69289 /* FeedViewController.swift */,
+				DC6B951529E6F32000329EB7 /* InfoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DC39444B2A38C37400D4EB6C /* Struct */ = {
+			isa = PBXGroup;
+			children = (
+				DC30984F29F27A3700C69289 /* NewPost.swift */,
+				DC44E9AE2A1B8C0900B1A509 /* Post.swift */,
+				DC44E9B62A1E547B00B1A509 /* Photo.swift */,
+			);
+			path = Struct;
 			sourceTree = "<group>";
 		};
 		DC6B94EF29E6EF5E00329EB7 = {
@@ -104,15 +122,13 @@
 			children = (
 				DC30985229F292C600C69289 /* Profile */,
 				DC6B94FB29E6EF5E00329EB7 /* AppDelegate.swift */,
-				DC6B94FF29E6EF5E00329EB7 /* ViewController.swift */,
+				DC6B94FD29E6EF5E00329EB7 /* SceneDelegate.swift */,
+				DC39444A2A38C31000D4EB6C /* Controller */,
+				DC39444B2A38C37400D4EB6C /* Struct */,
 				DC6B950129E6EF5E00329EB7 /* Main.storyboard */,
 				DC6B950429E6EF5E00329EB7 /* Assets.xcassets */,
 				DC6B950629E6EF5E00329EB7 /* LaunchScreen.storyboard */,
 				DC6B950929E6EF5E00329EB7 /* Info.plist */,
-				DC6B951329E6F2B500329EB7 /* PostViewController.swift */,
-				DC6B951529E6F32000329EB7 /* InfoViewController.swift */,
-				DC30984B29ED663400C69289 /* FeedViewController.swift */,
-				DC30984F29F27A3700C69289 /* NewPost.swift */,
 			);
 			path = navigation;
 			sourceTree = "<group>";
