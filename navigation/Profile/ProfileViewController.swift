@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-    
-    let myPost = Post.make()
+var myPost = Post.make()
+
+class ProfileViewController: UIViewController, GetLikesDelegate {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -60,10 +60,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section == 1 else {return 1}
-        return  myPost.count
+        if section == 0 {
+            return 1
+        } else {
+            return  myPost.count
+        }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0  {
@@ -73,7 +75,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
             cell.setupCell(model: myPost[indexPath.row])
-            
+            //add
+            cell.delegate = self
+            cell.setIndexPath(indexPath)
             return cell
         }
         return UITableViewCell()
@@ -105,7 +109,18 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let photosViewController = PhotosViewController()
         if indexPath.section == 0 {
             navigationController?.pushViewController(photosViewController, animated: true)
+        } else if indexPath.section == 1 {
+            myPost[indexPath.row].views += 1
+            let postModalVC = PostModalViewController()
+            postModalVC.setupData(model: myPost[indexPath.row])
+            tableView.reloadData()
+            present(postModalVC, animated: true)
         }
     }
 }
 
+extension ProfileViewController {
+    func getLikes(for model: inout[Post], indexPath: IndexPath) {
+        model[indexPath.row].likes += 1
+    }
+}
