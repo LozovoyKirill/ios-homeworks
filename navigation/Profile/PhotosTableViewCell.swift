@@ -8,7 +8,7 @@
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
-
+    
     private let arrowImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image =  UIImage(systemName: "arrow.right")
@@ -87,6 +87,7 @@ class PhotosTableViewCell: UITableViewCell {
             contentView.addSubview($0)
         }
     }
+    
     private func setupContraints() {
         let inset: CGFloat = 12
         let screenRect = UIScreen.main.bounds
