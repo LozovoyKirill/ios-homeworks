@@ -32,7 +32,6 @@ class LogInViewController: UIViewController {
         imageView.image = UIImage(named: "logovk")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     
@@ -51,7 +50,7 @@ class LogInViewController: UIViewController {
         textField.returnKeyType = UIReturnKeyType.next
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
         textField.delegate = self
-        
+        textField.addTarget(self, action: #selector(textFieldMustReturn), for: .editingDidEndOnExit)
         return textField
     }()
     
@@ -71,8 +70,7 @@ class LogInViewController: UIViewController {
         textField.returnKeyType = UIReturnKeyType.done
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
         textField.delegate = self
-        
-        
+        textField.addTarget(self, action: #selector(textFieldMustReturn), for: .editingDidEndOnExit)
         return textField
     }()
     
@@ -90,11 +88,12 @@ class LogInViewController: UIViewController {
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.addArrangedSubview(self.phoneTextField)
         stackView.addArrangedSubview(self.passwordTextField)
-        
-        return stackView
+       return stackView
     }()
     
-    
+    private let numberPasswordCharacters = 4
+    private let rightLogin = "admin"
+    private let rightPassword = "admin"
     
     private lazy var logButton: UIButton = {
         let button = UIButton()
@@ -106,16 +105,26 @@ class LogInViewController: UIViewController {
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(logButtonPressed), for: .touchUpInside)
-        
         return button
     }()
     
+    private let wrongPassword: UILabel = {
+        let label = UILabel()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.textColor = .gray
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         addSubview()
         setupConstraints()
+        addGesture()
     }
     
     private func setupView() {
@@ -129,6 +138,7 @@ class LogInViewController: UIViewController {
         view.addSubview(logoImageView)
         contentView.addSubview(textFieldStackView)
         contentView.addSubview(logButton)
+        contentView.addSubview(wrongPassword)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -145,7 +155,6 @@ class LogInViewController: UIViewController {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
         scrollView.contentInset.bottom = keyboardHeight ?? 0.0
     }
-    
     
     @objc func willHideKeyboard(_ notification: NSNotification){
         scrollView.contentInset.bottom = 0.0
@@ -173,20 +182,63 @@ class LogInViewController: UIViewController {
             
             textFieldStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             textFieldStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            textFieldStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120),
+            textFieldStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 100),
             textFieldStackView.heightAnchor.constraint(equalToConstant: 100),
             
             logButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            logButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 16),
+            logButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 40),
             logButton.heightAnchor.constraint(equalToConstant: 50),
-            logButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            logButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            wrongPassword.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 10),
+            wrongPassword.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            wrongPassword.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
         ])
     }
     
     @objc func logButtonPressed() {
+        if phoneTextField.text?.isEmpty == true {
+            shakeTextField(to: phoneTextField)
+            return
+        }
+        if passwordTextField.text?.isEmpty == true {
+            shakeTextField(to: passwordTextField)
+            return
+        }
+        if let password = passwordTextField.text, password.count < numberPasswordCharacters {
+            wrongPassword.text = "Пароль должен содержать более 4 символов"
+            wrongPassword.isHidden = false
+            return
+        }
+        if phoneTextField.text != rightLogin || passwordTextField.text != rightPassword {
+            let alert = UIAlertController (title: "Ошибка", message: "Введен неверный логин или пароль", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default))
+            present(alert, animated: true, completion: nil)
+            return
+        }
         let profileViewController = ProfileViewController()
         navigationController?.pushViewController(profileViewController, animated: false)
+        wrongPassword.isHidden = true
+    }
+    @objc func textFieldMustReturn() {
+        view.endEditing(true)
+    }
+    
+    private func shakeTextField(to textField: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textField.center.x - 10, y: textField.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textField.center.x + 10, y: textField.center.y))
+        textField.layer.add(animation, forKey: "position")
+    }
+    
+    private func addGesture() {
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(textFieldMustReturn))
+        tapScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapScreen)
     }
     
     private func setupKeyboardObservers() {
@@ -207,7 +259,6 @@ extension LogInViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
         return true
     }
 }
